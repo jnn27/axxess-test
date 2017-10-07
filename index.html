@@ -2,10 +2,80 @@
 <html>
   <head>
     <title>Fingers & Toes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous">
+      </script>
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,700" rel="stylesheet">
+    <link href="styles.css" type="text/css" rel="stylesheet"/>
   </head>
   <body>
 
-     
+    <h2>COUNTER</h2>
+    <div id="counter"></div>
+
+    <div>
+      <div id="fingers">
+        <h1>Fingers</h1>
+      </div>
+
+      <div id="toes">
+        <h1>Toes</h1>
+      </div>
+    </div>
+
+    <div id="btn-container">
+      <input type="number" id="input-num" placeholder="Enter a number..." value="0" />
+      <button onclick="startCounter()" id="start">Start</button>
+
+      <button id="reset">Reset</button>
+      <button id="restart">Restart</button>
+    </div>
+
+    <script>
+
+    var i = 0;
+    var num = document.getElementById('counter');
+
+    function startCounter() {
+      setInterval(increase, 1000);
+    }
+
+    function increase() {
+      var inputNum = document.getElementById('input-num').value
+
+      if (i < inputNum) {
+        i++;
+        num.innerText = i
+      }
+
+      if (i%3===0){
+        $('#fingers').css({'background':'#66B9BF', 'color':'white'})
+      } else {
+        $('#fingers').css({'background':'white','color':'grey'})
+      }
+
+      if(i%5 === 0){
+        $('#toes').css({'background':'#EEAA7B', 'color':'white'})
+      } else {
+        $('#toes').css({'background':'white','color':'grey'})
+      }
+    }
+
+    $("#reset").click(function(){
+      $("#input-num").val('');
+      i = 0;
+      num.innerText = 0;
+      cleaInterval(increase);
+    })
+
+    $("#restart").click(function(){
+      i = 0;
+      num.innerText = 0;
+      cleaInterval(increase)
+      startCounter();
+    })
+
+    </script>
 
   </body>
 </html>
