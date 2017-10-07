@@ -35,9 +35,10 @@
 
     var i = 0;
     var num = document.getElementById('counter');
+    var interval;
 
     function startCounter() {
-      setInterval(increase, 1000);
+      interval = setInterval(increase, 1000);
     }
 
     function increase() {
@@ -59,21 +60,21 @@
       } else {
         $('#toes').css({'background':'white','color':'grey'})
       }
-    }
+    };
 
     $("#reset").click(function(){
       $("#input-num").val('');
       i = 0;
       num.innerText = 0;
-      cleaInterval(increase);
-    })
+      clearInterval(increase);
+    });
 
     $("#restart").click(function(){
       i = 0;
       num.innerText = 0;
-      cleaInterval(increase)
+      clearInterval(interval);
       startCounter();
-    })
+    });
 
     </script>
 
